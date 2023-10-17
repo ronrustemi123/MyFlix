@@ -36,6 +36,10 @@
 	color: white !important;
 }
 
+.movie-item:hover img {
+	transition: scale 0.15s ease-in-out;
+	scale: 1.03;	
+}
 
 #nav-bar {
 	height: 300px !important;

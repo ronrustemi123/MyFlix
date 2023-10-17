@@ -1,16 +1,19 @@
 import Sidebar from './components/Sidebar/Sidebar';
 import Navbar from './components/Navbar/Navbar';
 import { DrawerContext } from './context/DrawerContext';
-import {MovieContext} from './context/MovieContext'
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import Movies from './components/Movies/Movies';
 
 
 function App() {
   
   const [openDrawer, setOpenDrawer] = useState(false)
-  const [data, setData] = useState([])
   const [category, setCategory] = useState('popular')
+  const [genre, setGenre] = useState('')
+  
+  const [categoryData, setCategoryData] = useState([])
+  const [genreData, setGenreData] = useState([])
+  const [changeMovies, setChangeMovies] = useState(0)
 
   const options = {
     method: 'GET',
@@ -20,29 +23,39 @@ function App() {
     }
   };
 
-  const getMovieData = async () => {
-    try {
-      const resp = await fetch(`https://api.themoviedb.org/3/movie/${category}`, options)
+    const getMovieData = async () => {
+      try {
+      const resp = await fetch(`https://api.themoviedb.org/3/movie/${category}?language=en-US&page=1`, options)
       const data = await resp.json()
-      setData(data.results)
-    } catch (error) {
+      setCategoryData(data.results)
+      } catch (error) {
       console.error(error)
-    }
+      }
   }
 
+  const getGenreData = async () => {
+      try {
+      const resp = await fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${genre}`, options)
+      const data = await resp.json()
+      setGenreData(data.results)
+      } catch (error) {
+      console.error(error)
+      }
+  }
+
+
   useEffect(() => {
-    getMovieData()
-  }, [category])
+    changeMovies === 0 ? getMovieData() : getGenreData()
+  }, [category, genre])
+
 
   return (
     <>
-      <MovieContext.Provider value={{data}}>
-        <DrawerContext.Provider value={{openDrawer, setOpenDrawer, setCategory, category}}>
+        <DrawerContext.Provider value={{genreData, changeMovies, setChangeMovies, categoryData, openDrawer, setOpenDrawer, setCategory, setGenre}}>
             <Sidebar/>
             <Navbar/>
             <Movies/>
         </DrawerContext.Provider>
-      </MovieContext.Provider>
     </>
   )
 }

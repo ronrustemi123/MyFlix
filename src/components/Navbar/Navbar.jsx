@@ -26,7 +26,7 @@ const Navbar = () => {
 
     return (
         <>
-            <Box ml={{sm: '240px'}} height={'80px'} sx={{backgroundColor: '#272727', color: 'white'}}>
+            <Box  ml={{sm: '240px'}} height={'80px'} sx={{backgroundColor: '#272727', color: 'white'}}>
                 <Stack alignItems={"center"} height={1} px={{sm: 4.5, xs: 1.5}} direction={'row'} justifyContent={'space-between'}>
                     <Box sx={{display: burger}} onClick={handleOpenDrawer}>
                         <MenuIcon />

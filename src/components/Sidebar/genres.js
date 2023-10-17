@@ -1,78 +1,78 @@
 export const genres = [
     {
-        value: 'action',
-        label: 'action'
+        value: 28,
+        label: "Action"
     },
     {
-        value: 'adventure',
-        label: 'adventure'
+        value: 12,
+        label: "Adventure"
     },
     {
-        value: 'animation',
-        label: 'animation'
+        value: 16,
+        label: "Animation"
     },
     {
-        value: 'comedy',
-        label: 'comedy'
+        value: 35,
+        label: "Comedy"
     },
     {
-        value: 'crime',
-        label: 'crime'
+        value: 80,
+        label: "Crime"
     },
     {
-        value: 'documentary',
-        label: 'documentary'
+        value: 99,
+        label: "Documentary"
     },
     {
-        value: 'drama',
-        label: 'drama'
+        value: 18,
+        label: "Drama"
     },
     {
-        value: 'family',
-        label: 'family'
+        value: 10751,
+        label: "Family"
     },
     {
-        value: 'fantasy',
-        label: 'fantasy'
+        value: 14,
+        label: "Fantasy"
     },
     {
-        value: 'history',
-        label: 'history'
+        value: 36,
+        label: "History"
     },
     {
-        value: 'horror',
-        label: 'horror'
+        value: 27,
+        label: "Horror"
     },
     {
-        value: 'music',
-        label: 'music'
+        value: 10402,
+        label: "Music"
     },
     {
-        value: 'mystery',
-        label: 'mystery'
+        value: 9648,
+        label: "Mystery"
     },
     {
-        value: 'romance',
-        label: 'romance'
+        value: 10749,
+        label: "Romance"
     },
     {
-        value: 'science_fiction',
-        label: 'science fiction'
+        value: 878,
+        label: "Science Fiction"
     },
     {
-        value: 'tv_movie',
-        label: 'tv movie'
+        value: 10770,
+        label: "TV Movie"
     },
     {
-        value: 'thriller',
-        label: 'thriller'
+        value: 53,
+        label: "Thriller"
     },
     {
-        value: 'war',
-        label: 'war'
+        value: 10752,
+        label: "War"
     },
     {
-        value: 'western',
-        label: 'western'
-    },
+        value: 37,
+        label: "Western"
+    }
 ]

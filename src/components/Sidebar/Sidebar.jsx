@@ -16,15 +16,14 @@ const Sidebar = () => {
 
     const matches = useMediaQuery('(min-width:600px)');
 
-    const {openDrawer, setOpenDrawer, setCategory, category} = useContext(DrawerContext)
+    const {openDrawer, setChangeMovies, setOpenDrawer, setCategory, setGenre} = useContext(DrawerContext)
     
     const handleOpenDrawer = () => {
         openDrawer === false ? setOpenDrawer(true) : setOpenDrawer(false)
     }
 
     return (
-        <> 
-        {console.log(category)}
+        <>
             <Drawer variant={matches ? 'permanent' : 'temporary'} anchor='left' onClose={handleOpenDrawer} open={openDrawer} >
                 <Box overflow={'auto'} sx={{backgroundColor: 'rgb(18, 18, 18)', height: '100vh'}} width={'240px'}>
                     <List>
@@ -37,7 +36,7 @@ const Sidebar = () => {
                         <Stack sx={{height: 'calc(100% - 48px)'}} justifyContent={'space-between'} direction={'column'}>
                             {categories.map(({value, label}) => {
                                 return (
-                                    <ListItem onClick={() => setCategory(value)} key={value} id='list-item-categories' disablePadding>
+                                    <ListItem onClick={() => {setCategory(value), setChangeMovies(0)}} key={value} id='list-item-categories' disablePadding>
                                         <ListItemButton >
                                             <ListItemIcon>
                                                 <img className='invert' width={30} height={30} src={images[label]}/>
@@ -55,10 +54,10 @@ const Sidebar = () => {
                         <Stack sx={{height: '100%'}} justifyContent={'space-between'} direction={'column'}>
                             {genres.map(({value, label}) => {
                                 return (
-                                    <ListItem key={value} id='list-item-categories' disablePadding>
+                                    <ListItem onClick={() => {setGenre(value), setChangeMovies(1)}} key={value} id='list-item-categories' disablePadding>
                                         <ListItemButton>
                                             <ListItemIcon>
-                                                <img className='invert' width={30} height={30} src={images[label]}/>
+                                                <img className='invert' width={30} height={30} src={images[label.toLowerCase()]}/>
                                             </ListItemIcon>
                                             <ListItemText primary={label} id='list-item-text'>
 
