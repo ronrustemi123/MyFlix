@@ -61,7 +61,7 @@ function App() {
 
   return (
     <>
-        <DrawerContext.Provider value={{page, setPage, genreData, changeMovies,catLoading, setChangeMovies, categoryData, openDrawer, setOpenDrawer, setCategory, setGenre}}>
+        <DrawerContext.Provider value={{options, page, setPage, genreData, changeMovies,catLoading, setChangeMovies, categoryData, openDrawer, setOpenDrawer, setCategory, setGenre}}>
             <Sidebar/>
             <Navbar/>
             <Routes>
