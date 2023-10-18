@@ -1,0 +1,105 @@
+@keyframes fade {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.poster-movie {
+	background-size: cover;
+	height: 100%;
+	width: 100%;
+	border-radius: 5px;
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: column;
+	padding: 2.5rem;
+	position: relative;
+	background-position: center;
+	cursor: pointer;
+	transition: .4s, background-size 1s;
+	overflow: hidden;
+}
+
+.poster-movie:hover {
+	transition: 2s ease-in;
+	background-size: 110%;
+}
+
+.poster-movie::before {
+	position: absolute;
+	content: "";
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+	z-index: 99;
+}
+
+.zoom-in {
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: inherit;
+    background-size: cover;
+    transform-origin: center;
+    transition: transform .4s ease-in-out;
+  }
+}
+
+.zoom-in {
+  &:focus,
+  &:hover {
+    &::after {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.poster-movie div {
+	width: 450px;
+	color: white;
+	z-index: 999;
+	position: relative;
+}
+
+.poster-movie div h1 {
+	font-size: 26px;
+	font-weight: 500;
+}
+
+
+
+.poster-movie div p {
+	margin-top: 20px;
+	font-size: 14px;
+	line-height: 1.5em;
+}
+
+.movie-item {
+	animation: fade 1s ease-in;
+}
+@media (max-width: 600px) {
+	.poster-movie div {
+		width: 100%;
+	}
+	.poster-movie div p {
+		font-weight: 500;
+	}
+	.poster-movie div h1 {
+		font-size: 23px;
+	}
+	.poster-movie::before {
+		background-color: rgba(0, 0, 0, 0.7);
+	}
+	.poster-movie {
+		padding: 1.5rem 1rem;
+	}
+}

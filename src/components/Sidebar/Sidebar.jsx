@@ -1,16 +1,13 @@
 import { Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, ListSubheader, Stack } from '@mui/material';
 import Drawer from '@mui/material/Drawer';
-
 import { images } from '../../assets/genres/images'
 import { categories } from './categories';
 import { genres } from './genres';
-
 import logo from '../../assets/myflix-logo.png'
-
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useContext } from 'react';
-
 import { DrawerContext } from '../../context/DrawerContext';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
 
@@ -18,9 +15,7 @@ const Sidebar = () => {
 
     const {openDrawer, setChangeMovies, setOpenDrawer, setCategory, setGenre} = useContext(DrawerContext)
     
-    const handleOpenDrawer = () => {
-        openDrawer === false ? setOpenDrawer(true) : setOpenDrawer(false)
-    }
+    const handleOpenDrawer = () => openDrawer === false ? setOpenDrawer(true) : setOpenDrawer(false)
 
     return (
         <>
@@ -36,15 +31,17 @@ const Sidebar = () => {
                         <Stack sx={{height: 'calc(100% - 48px)'}} justifyContent={'space-between'} direction={'column'}>
                             {categories.map(({value, label}) => {
                                 return (
-                                    <ListItem onClick={() => {setCategory(value), setChangeMovies(0)}} key={value} id='list-item-categories' disablePadding>
-                                        <ListItemButton >
-                                            <ListItemIcon>
-                                                <img className='invert' width={30} height={30} src={images[label]}/>
-                                            </ListItemIcon>
-                                            <ListItemText primary={label} id='list-item-text'>
-                                            </ListItemText>
-                                        </ListItemButton>
-                                    </ListItem>
+                                    <Link key={value}  to={'/'} style={{textDecoration: 'none'}}>
+                                        <ListItem onClick={() => {setCategory(value), setChangeMovies(0), window.scrollTo(0, 0), setOpenDrawer(false)}}  id='list-item-categories' disablePadding>
+                                            <ListItemButton disableRipple disableTouchRipple>
+                                                <ListItemIcon>
+                                                    <img className='invert' width={30} height={30} src={images[label]}/>
+                                                </ListItemIcon>
+                                                <ListItemText primary={label} id='list-item-text'>
+                                                </ListItemText>
+                                            </ListItemButton>
+                                        </ListItem>
+                                    </Link>
                                 )
                             })}
                         </Stack>
@@ -54,16 +51,18 @@ const Sidebar = () => {
                         <Stack sx={{height: '100%'}} justifyContent={'space-between'} direction={'column'}>
                             {genres.map(({value, label}) => {
                                 return (
-                                    <ListItem onClick={() => {setGenre(value), setChangeMovies(1)}} key={value} id='list-item-categories' disablePadding>
-                                        <ListItemButton>
-                                            <ListItemIcon>
-                                                <img className='invert' width={30} height={30} src={images[label.toLowerCase()]}/>
-                                            </ListItemIcon>
-                                            <ListItemText primary={label} id='list-item-text'>
+                                    <Link key={value} to={'/'} style={{textDecoration: 'none'}}>
+                                        <ListItem onClick={() => {setGenre(value), setChangeMovies(1), window.scrollTo(0, 0), setOpenDrawer(false)}} id='list-item-categories' disablePadding>
+                                            <ListItemButton disableRipple disableTouchRipple>
+                                                <ListItemIcon>
+                                                    <img className='invert' width={30} height={30} src={images[label.toLowerCase()]}/>
+                                                </ListItemIcon>
+                                                <ListItemText primary={label} id='list-item-text'>
 
-                                            </ListItemText>
-                                        </ListItemButton>
-                                    </ListItem>
+                                                </ListItemText>
+                                            </ListItemButton>
+                                        </ListItem>
+                                    </Link>
                                 )
                             })}
                         </Stack>

@@ -3,6 +3,8 @@ import Navbar from './components/Navbar/Navbar';
 import { DrawerContext } from './context/DrawerContext';
 import { useState, useEffect } from 'react';
 import Movies from './components/Movies/Movies';
+import { Routes, Route } from "react-router-dom";
+import MoviePage from './pages/MoviePage'
 
 
 function App() {
@@ -15,6 +17,8 @@ function App() {
   const [genreData, setGenreData] = useState([])
   const [changeMovies, setChangeMovies] = useState(0)
 
+  const [catLoading, setCatLoading] = useState(true)
+
   const options = {
     method: 'GET',
     headers: {
@@ -24,22 +28,26 @@ function App() {
   };
 
     const getMovieData = async () => {
+      setCatLoading(true)
       try {
-      const resp = await fetch(`https://api.themoviedb.org/3/movie/${category}?language=en-US&page=1`, options)
-      const data = await resp.json()
-      setCategoryData(data.results)
+        const resp = await fetch(`https://api.themoviedb.org/3/movie/${category}?language=en-US&page=1`, options)
+        const data = await resp.json()
+        setCategoryData(data.results)
+        setCatLoading(false)
       } catch (error) {
-      console.error(error)
+        console.error(error)
       }
   }
 
   const getGenreData = async () => {
+      setCatLoading(true)
       try {
-      const resp = await fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${genre}`, options)
-      const data = await resp.json()
-      setGenreData(data.results)
+        const resp = await fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${genre}`, options)
+        const data = await resp.json()
+        setGenreData(data.results)
+        setCatLoading(false)
       } catch (error) {
-      console.error(error)
+        console.error(error)
       }
   }
 
@@ -51,10 +59,15 @@ function App() {
 
   return (
     <>
-        <DrawerContext.Provider value={{genreData, changeMovies, setChangeMovies, categoryData, openDrawer, setOpenDrawer, setCategory, setGenre}}>
+        <DrawerContext.Provider value={{genreData, changeMovies,catLoading, setChangeMovies, categoryData, openDrawer, setOpenDrawer, setCategory, setGenre}}>
             <Sidebar/>
             <Navbar/>
-            <Movies/>
+            <Routes>
+              <Route path='/' element={<Movies/>}/>
+              <Route path='/movie'>
+                <Route path=':movieId' element={<MoviePage/>}/>
+              </Route>
+            </Routes>
         </DrawerContext.Provider>
     </>
   )
