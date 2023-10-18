@@ -6,14 +6,19 @@ import { Box, Stack } from '@mui/material';
 import {CircularProgress} from '@mui/material';
 import { Link } from 'react-router-dom';
 import './Movies.css'
+import {Pagination} from '@mui/material';
 
 const Movies = () => {
 
-    const {genreData, categoryData, changeMovies, catLoading} = useContext(DrawerContext)
+    const {genreData, categoryData, changeMovies, catLoading, setPage, page} = useContext(DrawerContext)
 
 
-        const posterCatMovie = categoryData[0]
-        const posterGenMovie = genreData[0]
+    const posterCatMovie = categoryData[0]
+    const posterGenMovie = genreData[0]
+
+    const handlePageChange = (event, value) => {
+        setPage(value)
+    }
 
     return (
         <>  
@@ -62,6 +67,7 @@ const Movies = () => {
                                 )
                             })
                         )}
+                        <Pagination onClick={() => window.scrollTo(0, 0)} page={page} onChange={handlePageChange} sx={{margin: '2rem 0'}} size='medium' color='error' count={10} shape="rounded" />
                     </Grid2>
                 </>
             ) : (

@@ -19,6 +19,8 @@ function App() {
 
   const [catLoading, setCatLoading] = useState(true)
 
+  const [page, setPage] = useState(1)
+
   const options = {
     method: 'GET',
     headers: {
@@ -30,7 +32,7 @@ function App() {
     const getMovieData = async () => {
       setCatLoading(true)
       try {
-        const resp = await fetch(`https://api.themoviedb.org/3/movie/${category}?language=en-US&page=1`, options)
+        const resp = await fetch(`https://api.themoviedb.org/3/movie/${category}?language=en-US&page=${page}`, options)
         const data = await resp.json()
         setCategoryData(data.results)
         setCatLoading(false)
@@ -42,7 +44,7 @@ function App() {
   const getGenreData = async () => {
       setCatLoading(true)
       try {
-        const resp = await fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${genre}`, options)
+        const resp = await fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${genre}&page=${page}`, options)
         const data = await resp.json()
         setGenreData(data.results)
         setCatLoading(false)
@@ -54,12 +56,12 @@ function App() {
 
   useEffect(() => {
     changeMovies === 0 ? getMovieData() : getGenreData()
-  }, [category, genre])
+  }, [category, genre, page])
 
 
   return (
     <>
-        <DrawerContext.Provider value={{genreData, changeMovies,catLoading, setChangeMovies, categoryData, openDrawer, setOpenDrawer, setCategory, setGenre}}>
+        <DrawerContext.Provider value={{page, setPage, genreData, changeMovies,catLoading, setChangeMovies, categoryData, openDrawer, setOpenDrawer, setCategory, setGenre}}>
             <Sidebar/>
             <Navbar/>
             <Routes>

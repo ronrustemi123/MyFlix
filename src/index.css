@@ -41,6 +41,10 @@
 	scale: 1.03;	
 }
 
+.MuiPaginationItem-sizeMedium {
+	color: white !important;
+}
+
 #nav-bar {
 	height: 300px !important;
 }
