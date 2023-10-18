@@ -21,7 +21,7 @@ const Movies = () => {
                 <>
                     <Box sx={{backgroundColor: 'rgb(18,18,18)'}} height={530} py={3} px={4.5} ml={{sm: 30, xs: 0}} alignItems={'center'}>
                         {changeMovies === 0 ? (
-                            <Link to={`movie/${posterCatMovie.id}`} key={posterCatMovie.id} style={{textDecoration: 'none'}} onClick={() => window.scrollTo(0, 0)}>
+                            <Link to={`movie/${posterCatMovie?.id}`} key={posterCatMovie?.id} style={{textDecoration: 'none'}} onClick={() => window.scrollTo(0, 0)}>
                                 <div className='poster-movie zoom-in' style={{backgroundImage: `url(https://image.tmdb.org/t/p/original/${posterCatMovie?.backdrop_path})`}}>
                                     <div>
                                         <h1>{posterCatMovie?.title}</h1>
@@ -30,7 +30,7 @@ const Movies = () => {
                                 </div>
                             </Link>
                         ) : (
-                            <Link to={`movie/${posterGenMovie.id}`} key={posterGenMovie.id} style={{textDecoration: 'none'}} onClick={() => window.scrollTo(0, 0)}>
+                            <Link to={`movie/${posterGenMovie?.id}`} key={posterGenMovie?.id} style={{textDecoration: 'none'}} onClick={() => window.scrollTo(0, 0)}>
                                 <div className='poster-movie zoom-in' style={{backgroundImage: `url(https://image.tmdb.org/t/p/original/${posterGenMovie?.backdrop_path})`}}>
                                     <div>
                                         <h1>{posterGenMovie?.title}</h1>
