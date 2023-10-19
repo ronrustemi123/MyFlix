@@ -15,6 +15,8 @@ function App() {
   
   const [categoryData, setCategoryData] = useState([])
   const [genreData, setGenreData] = useState([])
+  const [searchMovie, setSearchMovie] = useState([])
+  const [search, setSearch] = useState('')
   const [changeMovies, setChangeMovies] = useState(0)
 
   const [catLoading, setCatLoading] = useState(true)
@@ -55,19 +57,18 @@ function App() {
 
 
   useEffect(() => {
-    changeMovies === 0 ? getMovieData() : getGenreData()
+    changeMovies === 0 ? getMovieData() : changeMovies === 1 ? getGenreData() : null
   }, [category, genre, page])
 
 
   return (
     <>
-        <DrawerContext.Provider value={{options, page, setPage, genreData, changeMovies,catLoading, setChangeMovies, categoryData, openDrawer, setOpenDrawer, setCategory, setGenre}}>
+        <DrawerContext.Provider value={{search, setSearch, searchMovie, setSearchMovie, options, page, setPage, genreData,setCatLoading, changeMovies,catLoading, setChangeMovies, categoryData, openDrawer, setOpenDrawer, setCategory, setGenre}}>
             <Sidebar/>
-            <Navbar/>
             <Routes>
-              <Route path='/' element={<Movies/>}/>
+              <Route path='/' element={<><Navbar show={'block'}/><Movies/></>}/>
               <Route path='/movie'>
-                <Route path=':movieId' element={<MoviePage/>}/>
+                <Route path=':movieId' element={<><Navbar show={'none'}/><MoviePage/></>}/>
               </Route>
             </Routes>
         </DrawerContext.Provider>

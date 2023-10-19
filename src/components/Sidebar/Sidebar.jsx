@@ -13,7 +13,7 @@ const Sidebar = () => {
 
     const matches = useMediaQuery('(min-width:600px)');
 
-    const {setPage, openDrawer, setChangeMovies, setOpenDrawer, setCategory, setGenre} = useContext(DrawerContext)
+    const {setPage,setSearch, openDrawer, setChangeMovies, setOpenDrawer, setCategory, setGenre} = useContext(DrawerContext)
     
     const handleOpenDrawer = () => openDrawer === false ? setOpenDrawer(true) : setOpenDrawer(false)
 
@@ -32,7 +32,7 @@ const Sidebar = () => {
                             {categories.map(({value, label}) => {
                                 return (
                                     <Link key={value}  to={'/'} style={{textDecoration: 'none'}}>
-                                        <ListItem onClick={() => {setCategory(value), setChangeMovies(0), window.scrollTo(0, 0), setOpenDrawer(false), setPage(1)}}  id='list-item-categories' disablePadding>
+                                        <ListItem onClick={() => {setCategory(value), setChangeMovies(0), window.scrollTo(0, 0), setOpenDrawer(false), setPage(1), setSearch('')}}  id='list-item-categories' disablePadding>
                                             <ListItemButton disableRipple disableTouchRipple>
                                                 <ListItemIcon>
                                                     <img className='invert' width={30} height={30} src={images[label]}/>
@@ -52,7 +52,7 @@ const Sidebar = () => {
                             {genres.map(({value, label}) => {
                                 return (
                                     <Link key={value} to={'/'} style={{textDecoration: 'none'}}>
-                                        <ListItem onClick={() => {setGenre(value), setChangeMovies(1), window.scrollTo(0, 0), setOpenDrawer(false), setPage(1)}} id='list-item-categories' disablePadding>
+                                        <ListItem onClick={() => {setGenre(value), setChangeMovies(1), window.scrollTo(0, 0), setOpenDrawer(false), setPage(1), setSearch('')}} id='list-item-categories' disablePadding>
                                             <ListItemButton disableRipple disableTouchRipple>
                                                 <ListItemIcon>
                                                     <img className='invert' width={30} height={30} src={images[label.toLowerCase()]}/>

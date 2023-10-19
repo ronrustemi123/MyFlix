@@ -8,13 +8,15 @@ import { useState, useEffect, useContext } from "react";
 
 import { DrawerContext } from "../../context/DrawerContext";
 
-const Navbar = () => {
+const Navbar = ({show}) => {
 
     const [burger, setBurger] = useState('none')
+    
+    const [isSubmited, setIsSubmited] = useState(false)
 
     const matches = useMediaQuery('(min-width:600px)');
 
-    const {openDrawer, setOpenDrawer} = useContext(DrawerContext)
+    const {search, setSearch, openDrawer, setOpenDrawer, setSearchMovie, options, setCatLoading, setChangeMovies, page} = useContext(DrawerContext)
 
     useEffect(() => {
         matches ? setBurger('none') : setBurger('block')
@@ -23,6 +25,25 @@ const Navbar = () => {
     const handleOpenDrawer = () => {
         openDrawer === false ? setOpenDrawer(true) : setOpenDrawer(false)
     }
+  
+    const getSearchData = async () => {
+        setCatLoading(true)
+        try {
+          const resp = await fetch(`https://api.themoviedb.org/3/search/movie?query=${search}&include_adult=false&language=en-US&page=${page}`, options)
+          const data = await resp.json()
+          setSearchMovie(data.results)
+          setCatLoading(false)
+        } catch (error) {
+          console.error(error)
+        }
+    }
+
+    const handleSubmit = e => e.preventDefault()
+    const changeSubmitState = () => isSubmited === false ? setIsSubmited(true) : setIsSubmited(false)
+
+    useEffect(() => {
+        getSearchData()
+    }, [isSubmited, page])
 
     return (
         <>
@@ -31,18 +52,22 @@ const Navbar = () => {
                     <Box sx={{display: burger}} onClick={handleOpenDrawer}>
                         <MenuIcon />
                     </Box>
-                    <Input
-                        id="outlined-adornment-weight"
-                        startAdornment={<InputAdornment position="start"><SearchIcon sx={{color: 'white !important'}}/></InputAdornment>}
-                        aria-describedby="outlined-weight-helper-text"
-                        inputProps={{
-                        'aria-label': 'search',
-                        }}
-                        color="error"
-                        placeholder="Search Movie"
-                        sx={{borderColor: 'white'}}
-                    />
-                    <Button size={'medium'} startIcon={<AccountCircleIcon/>} color="inherit" variant="text">Log In</Button>
+                    <form style={{display: show}} onSubmit={e => {handleSubmit(e), setChangeMovies(2), changeSubmitState()}} action="">
+                        <Input
+                            id="outlined-adornment-weight"
+                            startAdornment={<InputAdornment position="start"><SearchIcon sx={{color: 'white !important'}}/></InputAdornment>}
+                            aria-describedby="outlined-weight-helper-text"
+                            inputProps={{
+                            'aria-label': 'search',
+                            }}
+                            color="error"
+                            placeholder="Search Movie"
+                            sx={{borderColor: 'white'}}
+                            value={search}
+                            onChange={e => setSearch(e.target.value)}
+                        />
+                    </form>
+                    <Button size={'medium'} startIcon={<AccountCircleIcon/>} sx={{marginLeft: 'auto'}} color="inherit" variant="text">Log In</Button>
                 </Stack>
             </Box>
         </>
