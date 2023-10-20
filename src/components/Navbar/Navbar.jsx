@@ -47,12 +47,12 @@ const Navbar = ({show}) => {
 
     return (
         <>
-            <Box  ml={{sm: '240px'}} height={'80px'} sx={{backgroundColor: '#272727', color: 'white'}}>
-                <Stack alignItems={"center"} height={1} px={{sm: 4.5, xs: 1.5}} direction={'row'} justifyContent={'space-between'}>
+            <Box ml={{sm: '240px'}} height={'80px'} sx={{backgroundColor: '#272727', color: 'white', boxShadow: '0 3px 6px #00000029', position: 'sticky', top: {sm: '0', xs: '-1px'}, zIndex: '9999'}}>
+                <Stack alignItems={"center"} height={1} px={{sm: 4.5, xs: 2}} direction={'row'} justifyContent={'space-between'}>
                     <Box sx={{display: burger}} onClick={handleOpenDrawer}>
                         <MenuIcon />
                     </Box>
-                    <form style={{display: show}} onSubmit={e => {handleSubmit(e), setChangeMovies(2), changeSubmitState()}} action="">
+                    <form style={{display: show, textAlign: 'center'}} onSubmit={e => {handleSubmit(e), setChangeMovies(2), changeSubmitState()}} action="">
                         <Input
                             id="outlined-adornment-weight"
                             startAdornment={<InputAdornment position="start"><SearchIcon sx={{color: 'white !important'}}/></InputAdornment>}
@@ -62,12 +62,13 @@ const Navbar = ({show}) => {
                             }}
                             color="error"
                             placeholder="Search Movie"
-                            sx={{borderColor: 'white'}}
+                            sx={{borderColor: 'white', width: {xs: '150px', sm: 'auto'}}}
+                            
                             value={search}
                             onChange={e => setSearch(e.target.value)}
                         />
                     </form>
-                    <Button size={'medium'} startIcon={<AccountCircleIcon/>} sx={{marginLeft: 'auto'}} color="inherit" variant="text">Log In</Button>
+                    <Button size={'medium'} startIcon={<AccountCircleIcon/>} sx={show === 'none' ? {marginLeft: 'auto'} : {marginLeft: '0'}} color="inherit" variant="text">Log In</Button>
                 </Stack>
             </Box>
         </>

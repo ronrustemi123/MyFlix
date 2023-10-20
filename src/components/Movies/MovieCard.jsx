@@ -6,7 +6,7 @@ const MovieCard = ({vote, image, title}) => {
     return (
         <Box sx={{cursor: 'pointer'}}>
             <Stack className="movie-item" alignItems={'center'}>
-                <img style={{borderRadius: '20px'}} width={200} height={300} src={`https://image.tmdb.org/t/p/original/${image}`} alt="movieImage" />
+                <img style={{borderRadius: '20px'}} width={200} height={300} src={`https://image.tmdb.org/t/p/w500/${image}`} alt="movieImage" />
                 <Typography mt={1} sx={{width: '200px', color: 'white'}} align="center" noWrap={true} variant="h5">
                     {title}
                 </Typography>

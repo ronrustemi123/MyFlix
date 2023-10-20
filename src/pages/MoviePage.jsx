@@ -72,11 +72,11 @@ const MoviePage = () => {
                                 <Typography color={'white'} fontWeight={500} paragraph={true}>{movieRating.toFixed(1)}/5</Typography>
                             </Stack>
                         </Grid2>
-                        <Grid2 spacing={3} p={{sm: 0}} m={0} mt={5} mb={5} direction={'row'} container >
+                        <Grid2 spacing={3} p={{sm: 0}} m={0} mt={5} mb={5} direction={'row'} container justifyContent={'center'}>
                             {movieCast.map(el => {
                                 return (
                                     <Grid2 key={el.id}>
-                                        <CastCard name={el.name} char={el.character} image={el.profile_path}/>
+                                        <CastCard name={el.name} char={el.character} image={el?.profile_path}/>
                                     </Grid2>
                                 )
                             })}
@@ -92,7 +92,7 @@ const MoviePage = () => {
                             return (
                                 <Link onClick={() => window.scrollTo(0, 0)} key={el.id} to={`/movie/${el.id}`} style={{textDecoration: 'none'}}>
                                     <Grid2>
-                                        <MovieCard vote={el.vote_average} title={el.title} image={el.poster_path}/>
+                                        <MovieCard vote={el.vote_average} title={el.title} image={el?.poster_path}/>
                                     </Grid2>
                                 </Link>
                             )

@@ -66,7 +66,7 @@ function App() {
         <DrawerContext.Provider value={{search, setSearch, searchMovie, setSearchMovie, options, page, setPage, genreData,setCatLoading, changeMovies,catLoading, setChangeMovies, categoryData, openDrawer, setOpenDrawer, setCategory, setGenre}}>
             <Sidebar/>
             <Routes>
-              <Route path='/' element={<><Navbar show={'block'}/><Movies/></>}/>
+              <Route path='/' element={<><Navbar show={'flex'}/><Movies/></>}/>
               <Route path='/movie'>
                 <Route path=':movieId' element={<><Navbar show={'none'}/><MoviePage/></>}/>
               </Route>
