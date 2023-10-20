@@ -19,7 +19,7 @@ const Sidebar = () => {
 
     return (
         <>
-            <Drawer variant={matches ? 'permanent' : 'temporary'} anchor='left' onClose={handleOpenDrawer} open={openDrawer} >
+            <Drawer sx={{zIndex: '9999999'}} variant={matches ? 'permanent' : 'temporary'} anchor='left' onClose={handleOpenDrawer} open={openDrawer} >
                 <Box overflow={'auto'} sx={{backgroundColor: 'rgb(18, 18, 18)', height: '100vh'}} width={'240px'}>
                     <List>
                         <ListItem sx={{padding: '20px 0'}} alignItems='center'>
