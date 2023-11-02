@@ -1,6 +1,6 @@
 # MYFLIX - Project
 
-Explore a world of cinematic knowledge with our TMDb API-powered website. Discover detailed information, ratings, and more on your favorite movies. Your ultimate destination for all things film.
+Explore a world of cinematic knowledge with this TMDb API-powered website. Discover detailed information, ratings, and more on your favorite movies. Your ultimate destination for all things film.
 
 Design and idea from [JS Mastery Filmpire](https://filmpire.netlify.app/) 
 
